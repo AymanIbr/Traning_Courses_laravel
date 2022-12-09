@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest('id')->paginate(5);
-        return view('admin.categories.index',compact('categories'));
+        $stores = Store::latest('id')->paginate(5);
+        return view('admin.stores.index',compact('stores'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.stores.create');
     }
 
     /**
@@ -38,13 +38,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=> 'required|unique:categories,name'
+            'name'=> 'required'
         ]);
-        Category::create([
+        Store::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('categories.index')->with('success','Category Added Successfuly')
+        return redirect()->route('stores.index')->with('success','Store Added Successfuly')
         ->with('type', 'success');
     }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Store $store)
     {
         //
     }
@@ -67,8 +67,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        return view('admin.categories.edit',compact('category'));
+        $store = Store::findOrFail($id);
+        return view('admin.stores.edit',compact('store'));
     }
 
     /**
@@ -81,13 +81,13 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=> 'required|unique:categories,name'
+            'name'=> 'required|unique:stores,name'
         ]);
-        Category::findOrFail($id)->update([
+        Store::findOrFail($id)->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('categories.index')->with('success','Category Updated Successfuly')
+        return redirect()->route('stores.index')->with('success','Store Updated Successfuly')
         ->with('type', 'success');
     }
 
@@ -99,8 +99,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::findOrFail($id)->delete();
-        return redirect()->route('categories.index')->with('success','Category Deleted Successfuly')
+        Store::findOrFail($id)->delete();
+        return redirect()->route('stores.index')->with('success','Store Deleted Successfuly')
         ->with('type', 'danger');
     }
 }

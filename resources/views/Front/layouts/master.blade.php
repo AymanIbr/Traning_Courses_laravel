@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="{{asset('FrontEnd/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('FrontEnd/css/style.css')}}">
 
-    <title>Vision Courses</title>
+    <title>Purchase Store</title>
   </head>
   <body>
 
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="{{route('homePage')}}">Vision Courses</a>
+          <a class="navbar-brand" href="{{route('homePage')}}">Purchase Store</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -39,7 +39,7 @@
 
 
     <footer class="py-4 text-center bg-dark text-white ">
-      <p class="m-0">All Copyright reserved to <a href="#">Ayman Tamimi</a> <i class="far fa-copyright"></i>{{date('Y')}} </p>
+      <p class="m-0">All Copyright reserved to <a href="#">Store</a> <i class="far fa-copyright"></i>{{date('Y')}} </p>
     </footer>
 
     <script src="{{asset('FrontEnd/js/bootstrap.bundle.min.js')}}"></script>

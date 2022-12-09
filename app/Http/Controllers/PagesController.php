@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\ContactSubmit;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -12,25 +14,25 @@ use Illuminate\Support\Facades\Mail;
 class PagesController extends Controller
 {
     public function index(){
-        $courses = Course::latest('id')->paginate(5);
-        return view('Front.index',compact('courses'));
+        $products = Product::latest('id')->paginate(5);
+        return view('Front.index',compact('products'));
     }
 
     //Search
     public function search(Request $request){
-        $courses = Course::where('name','like','%'.$request->search . '%')
+        $products = Product::where('name','like','%'.$request->search . '%')
         ->orWhere('content','like','%' .$request->search . '%')->get();
-        return view('Front.index',compact('courses'));
+        return view('Front.index',compact('products'));
     }
 
-    public function course($slug){
-        $course = Course::where('slug',$slug)->first();
-        return view('Front.course',compact('course'));
+    public function product($slug){
+        $product = Product::where('slug',$slug)->first();
+        return view('Front.product',compact('product'));
     }
 
-    public function register($slug){
-        $course = Course::where('slug',$slug)->first();
-        return view('Front.register',compact('course'));
+    public function purchase($slug){
+        $product = Product::where('slug',$slug)->first();
+        return view('Front.purchase',compact('product'));
     }
     public function contact(){
         return view('Front.contact');
@@ -47,7 +49,7 @@ class PagesController extends Controller
         return redirect()->route('homePage');
     }
 
-    public function registerSubmit(Request $request, $slug)
+    public function purcharsSubmit(Request $request, $slug)
     {
         $request->validate([
             'name' => 'required',
@@ -57,7 +59,7 @@ class PagesController extends Controller
 
         // dd($request->all());
 
-        $course = Course::where('slug', $slug)->select('id')->first();
+        $product = Product::where('slug', $slug)->select('id')->first();
         $user = User::where('email', $request->email)->first();
         if(is_null($user)) {
             // create new user
@@ -68,18 +70,18 @@ class PagesController extends Controller
                 'gender' => $request->gender
             ]);
         }
-        $register = Registration::create([
+        $purchase = Purchase::create([
             'user_id' => $user->id,
-            'course_id' => $course->id
+            'product_id' => $product->id
         ]);
-        return redirect()->route('pay', $register->id);
+        return redirect()->route('pay', $purchase->id);
     }
     public function pay($id){
-        $register = Registration::find($id);
-        return view('Front.pay',compact('register'));
+        $purchase = Purchase::find($id);
+        return view('Front.pay',compact('purchase'));
     }
     public function thanks($id){
-        Registration::findOrFail($id)->update([
+        Purchase::findOrFail($id)->update([
             'status'=>1
         ]);
         return redirect()->route('homePage');

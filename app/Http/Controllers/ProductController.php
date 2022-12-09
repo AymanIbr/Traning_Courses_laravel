@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Purchase;
 use App\Models\Registration;
+use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +20,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest('id')->paginate(5);
-        return view('admin.courses.index',compact('courses'));
+        $products = Product::latest('id')->paginate(5);
+        return view('admin.products.index',compact('products'));
     }
 
     /**
@@ -28,8 +31,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $categories = Category::select(['id','name'])->get();
-        return view('admin.courses.create',compact('categories'));
+        $stores = Store::select(['id','name'])->get();
+        return view('admin.products.create',compact('stores'));
     }
 
     /**
@@ -41,26 +44,26 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=> 'required|unique:courses,name',
+            'name'=> 'required|unique:products,name',
             'price'=> 'required',
             'image'=> 'required|image',
-            'category_id'=> 'required',
+            'store_id'=> 'required',
             'content'=> 'required'
         ]);
 
         $ex = $request->file('image')->getClientOriginalExtension();
-        $new_image_name = 'traning_'.'.'.'Course'.rand().$ex;
+        $new_image_name = 'pruchurs'.'.'.'Product'.rand().$ex;
         $request->file('image')->move(public_path('uplods'),$new_image_name );
 
-        Course::create([
+        Product::create([
             'name' => $request->name ,
             'image' => $new_image_name ,
             'price' => $request->price,
             'content' => $request->content,
-            'category_id'=>$request->category_id,
+            'store_id'=>$request->store_id,
             'slug' => Str::slug($request->name)
         ]);
-        return redirect()->route('courses.index')->with('success', 'Course Add Successfuly')
+        return redirect()->route('products.index')->with('success', 'Product Add Successfuly')
         ->with('type', 'success');
     }
 
@@ -70,7 +73,7 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show()
     {
         //
     }
@@ -83,9 +86,9 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::select(['id','name'])->get();
-        $course = Course::findOrFail($id);
-        return view('admin.courses.edit',compact('categories','course'));
+        $stores = Store::select(['id','name'])->get();
+        $product = Product::findOrFail($id);
+        return view('admin.products.edit',compact('stores','product'));
     }
 
     /**
@@ -98,27 +101,27 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=> 'required|unique:courses,name',
+            'name'=> 'required|unique:products,name',
             'price'=> 'required',
             'image'=> 'nullabel|image',
-            'category_id'=> 'required',
+            'store_id'=> 'required',
             'content'=> 'required'
         ]);
-        $course = Course::findOrFail($id);
-        $new_image_name = $course->image;
+        $product = Product::findOrFail($id);
+        $new_image_name = $product->image;
         if($request->has('image')){
             $ex = $request->file('image')->getClientOriginalExtension();
-        $new_image_name = 'traning_'.'.'.'Course'.rand().$ex;
+        $new_image_name = 'purchase'.'.'.'Product'.rand().$ex;
         $request->file('image')->move(public_path('uplods'),$new_image_name );
         }
-        Course::findOrFail($id)->update([
+        Product::findOrFail($id)->update([
             'name'=> $request->name,
             'price'=> $request->price,
             'image'=> $new_image_name,
-            'category_id'=> $request->category_id,
+            'store_id'=> $request->store_id,
             'content'=> $request->content
         ]);
-        return redirect()->route('courses.index')->with('success', 'Course Updated Successfuly')
+        return redirect()->route('products.index')->with('success', 'Product Updated Successfuly')
         ->with('type', 'success');
     }
 
@@ -130,17 +133,17 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        Course::findOrFail($id)->delete();
-        return redirect()->route('courses.index')->with('success', 'Course Deleted Successfuly')
+        Product::findOrFail($id)->delete();
+        return redirect()->route('products.index')->with('success', 'Product Deleted Successfuly')
         ->with('type', 'danger');;
     }
     public function registration(){
-        $data = Registration::latest('id')->paginate(5);
-        return view('admin.courses.registration',compact('data'));
+        $data = Purchase::latest('id')->paginate(5);
+        return view('admin.products.purchase',compact('data'));
     }
     public function registrationDelete($id){
-        Registration::findOrFail($id)->delete();
-        return redirect()->route('registration')->with('success', 'Register Deleted Successfuly')
+        Purchase::findOrFail($id)->delete();
+        return redirect()->route('registration')->with('success', 'Purchase Deleted Successfuly')
         ->with('type', 'danger');;
     }
 }

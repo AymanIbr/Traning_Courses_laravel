@@ -17,8 +17,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Categories</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$Count_Category}}</div>
+                                                Stores</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$Count_Store}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-list-alt fa-2x "></i>
@@ -35,8 +35,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Courses</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$Count_Course}}</div>
+                                                Products</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$Count_product}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-laptop fa-2x "></i>
@@ -52,11 +52,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Registrations
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Purchases
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$Count_Register}}</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$Count_Purchase}}</div>
                                                 </div>
                                             </div>
                                         </div>

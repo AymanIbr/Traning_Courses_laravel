@@ -10,9 +10,9 @@
           <div class="col">
             <ol class="list-unstyled d-flex">
               <li><a href="{{route('homePage')}}">Home</a></li>
-              <li class="mx-4">Register on {{$course->name}}</li>
+              <li class="mx-4">Purchase The {{$product->name}}</li>
             </ol>
-            <h1>Register on {{$course->name}}</h1>
+            <h1>Purchase on {{$product->name}}</h1>
           </div>
         </div>
       </div>
@@ -21,14 +21,15 @@
     <section class="courses py-5">
       <div class="container">
         <h3 class="text-center mb-5">
-          Register on <span class="text-info">{{$course->name}}</span> with Price
-          <span class="text-danger">{{$course->price}}</span>
+          Purchase The <span class="text-info">{{$product->name}}</span> with Price
+          <span class="text-danger">{{$product->price}}</span>
         </h3>
 
         <div class="row">
           <div class="col-md-8">
-            <form action="{{route('register',$course->slug)}}" method="post">
+            <form action="{{route("purchase",$product->slug)}}" method="POST">
                 @csrf
+                
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-group">
@@ -87,7 +88,7 @@
               </div>
               <p style="padding-top: 15px">
                 <button class="btn btn-dark btn-lg px-5">
-                  Register & Pay Online
+                  Purchase & Pay Online
                 </button>
               </p>
             </form>
@@ -101,7 +102,7 @@
                 <ul id="orderSummaryList" class="list-unstyled summary">
                   <li>
                     <div class="d-flex justify-content-between">
-                      <h5>{{$course->price}}</h5>
+                      <h5>{{$product->price}}</h5>
                       <h5>450$</h5>
                     </div>
                   </li>
@@ -109,7 +110,7 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                   <h4 class="text-danger">Total</h4>
-                  <h4 class="text-danger">{{$course->price}}$</h4>
+                  <h4 class="text-danger">{{$product->price}}$</h4>
                 </div>
               </div>
             </div>

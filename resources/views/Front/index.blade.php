@@ -16,23 +16,23 @@
 
     <section class="courses py-5">
       <div class="container">
-        <h2 class="text-center mb-4">Our Courses</h2>
+        <h2 class="text-center mb-4">Our Products</h2>
         <div class="row justify-content-center">
-          @foreach ( $courses as $course )
+          @foreach ( $products as $product )
           <div class="col-xl-3 col-md-6 mb-4">
             <div class="card images">
-              <img src="{{asset('uplods/'.$course->image)}}" class="card-img-top" alt="...">
+              <img src="{{asset('uplods/'.$product->image)}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h5 class="card-title">{{$course->name}}</h5>
-                  <h5>{{$course->price}}</h5>
+                  <h5 class="card-title">{{$product->name}}</h5>
+                  <h5>{{$product->price}}</h5>
                 </div>
                 <p class="card-text">
                     @php
-                        echo substr($course->content , 0 , 200).'....'
+                        echo substr($product->content , 0 , 200).'....'
                     @endphp
                 </p>
-                <a href="{{route('course',$course->slug)}}" class="btn btn-dark w-100">Go</a>
+                <a href="{{route('product',$product->slug)}}" class="btn btn-dark w-100">Go</a>
               </div>
             </div>
           </div>

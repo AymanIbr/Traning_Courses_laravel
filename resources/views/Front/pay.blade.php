@@ -13,9 +13,9 @@
           <div class="col">
             <ol class="list-unstyled d-flex">
               <li><a href="{{route('homePage')}}">Home</a></li>
-              <li class="mx-4">Pay to {{$register->course->name}}</li>
+              <li class="mx-4">Pay to {{$purchase->product->name}}</li>
             </ol>
-            <h1>Pay to {{$register->course->name}}</h1>
+            <h1>Pay to {{$purchase->product->name}}</h1>
           </div>
         </div>
       </div>
@@ -24,8 +24,8 @@
     <section class="courses py-5">
       <div class="container">
         <h3 class="text-center mb-5">
-          Welcome {{$register->user->name}}, you are now pay for <span class="text-info">{{$register->course->name}}</span> with Price
-          <span class="text-danger">{{$register->course->price}}</span>
+          Welcome {{$purchase->user->name}}, you are now pay for <span class="text-info">{{$purchase->product->name}}</span> with Price
+          <span class="text-danger">{{$purchase->product->price}}</span>
         </h3>
 
         <div class="row">
@@ -53,7 +53,7 @@
                       purchase_units: [{
                         "amount":{
                           "currency_code":"USD",
-                          "value":"{{$register->course->price}}"
+                          "value":"{{$purchase->product->price}}"
                         }
                       }]
                     });
@@ -70,7 +70,7 @@
                       // element.innerHTML = '';
                       // element.innerHTML = '<h3>Thank you for your payment!</h3>';
 
-                      actions.redirect('{{route('thanks',$register->id)}}');
+                      actions.redirect('{{route('thanks',$purchase->id)}}');
                       // Or go to another URL:  actions.redirect('thank_you.html');
 
                     });
@@ -94,14 +94,14 @@
                   <li>
                     <div class="d-flex justify-content-between">
                       <h5>Course Price</h5>
-                      <h5>{{$register->course->price}}</h5>
+                      <h5>{{$purchase->product->price}}</h5>
                     </div>
                   </li>
                 </ul>
                 <hr>
                 <div class="d-flex justify-content-between">
                   <h4 class="text-danger">Total</h4>
-                  <h4 class="text-danger">{{$register->course->price}}</h4>
+                  <h4 class="text-danger">{{$purchase->product->price}}</h4>
                 </div>
               </div>
             </div>

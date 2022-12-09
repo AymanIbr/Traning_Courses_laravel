@@ -6,7 +6,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Traning Education</div>
+                <div class="sidebar-brand-text mx-3">Store Purchase</div>
             </a>
 
             <!-- Divider -->
@@ -26,12 +26,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-list-alt"></i>
-                    <span>Categories</span>
+                    <span>Stores</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('categories.index')}}">All Categories</a>
-                        <a class="collapse-item" href="{{route('categories.create')}}">Add Category</a>
+                        <a class="collapse-item" href="{{route('stores.index')}}">All Sotres</a>
+                        <a class="collapse-item" href="{{route('stores.create')}}">Add Store</a>
                     </div>
                 </div>
             </li>
@@ -39,13 +39,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Course"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-laptop"></i>
-                    <span>Courses</span>
+                    <span>Products</span>
                 </a>
                 <div id="Course" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('courses.index')}}">All Courses</a>
-                        <a class="collapse-item" href="{{route('courses.create')}}">Add Course</a>
-                        <a class="collapse-item" href="{{route('registration')}}">All Registration</a>
+                        <a class="collapse-item" href="{{route('products.index')}}">All Products</a>
+                        <a class="collapse-item" href="{{route('products.create')}}">Add Product</a>
+                        <a class="collapse-item" href="{{route('registration')}}">All Purchases</a>
                     </div>
                 </div>
             </li>

@@ -27,7 +27,7 @@
               <h3>Email Address</h3>
               <p>
                 <a href="mailto:contactus@bakkah.net.sa" class="email"
-                  >contactus@bakkah.net.sa</a
+                  ></a
                 >
               </p>
             </div>
@@ -38,12 +38,11 @@
               <h3>Our Address</h3>
               <div class="adr">
                 <div class="street-address">
-                  7344 Othman Bin Affan – Al Narjis Dist. Unit No 76
                 </div>
-                <span class="locality">Al Narjis</span>,
-                <span class="region">Riyadh</span>,
-                <span class="postal-code">13327</span>
-                <span class="country-name">Saudi Arabia</span>
+                <span class="locality"></span>,
+                <span class="region"></span>,
+                <span class="postal-code"></span>
+                <span class="country-name">Gaza</span>
               </div>
             </div>
           </div>

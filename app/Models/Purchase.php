@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Registration extends Model
+class Purchase extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Registration extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function course(){
-        return $this->belongsTo(Course::class);
+    public function products(){
+        return $this->belongsTo(Product::class);
     }
 }
